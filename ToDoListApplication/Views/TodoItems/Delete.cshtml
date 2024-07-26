@@ -1,0 +1,45 @@
+﻿@model ToDoListApplication.Models.TodoItem
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="container mt-5">
+    <h1 class="mb-4 text-center">@ViewData["Title"]</h1>
+
+    <div class="card">
+        <div class="card-body">
+            <h3 class="text-center mb-4">Are you sure you want to delete this item?</h3>
+            <h4 class="mb-3">TodoItem Details</h4>
+            <hr />
+            <dl class="row mb-4">
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Title)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Title)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.IsCompleted)
+                </dt>
+                <dd class="col-sm-9">
+                    @if (Model.IsCompleted)
+                    {
+                        <span class="badge bg-success">Completed</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-warning text-dark">Pending</span>
+                    }
+                </dd>
+            </dl>
+            <div class="d-flex justify-content-between">
+                <form asp-action="Delete" method="post">
+                    <input type="hidden" asp-for="Id" />
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+                <a class="btn btn-secondary" asp-action="Index">Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>
