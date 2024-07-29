@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
@@ -5,6 +6,7 @@ using ToDoListApplication.Models;
 
 namespace ToDoListApplication.Controllers
 {
+    [Authorize] // Bu, yalnýzca yetkilendirilmiþ kullanýcýlarýn eriþimini saðlar
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -17,12 +19,6 @@ namespace ToDoListApplication.Controllers
         public IActionResult Index()
         {
             _logger.LogInformation("Index sayfasý açýldý.");
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            _logger.LogInformation("Privacy sayfasý açýldý.");
             return View();
         }
 

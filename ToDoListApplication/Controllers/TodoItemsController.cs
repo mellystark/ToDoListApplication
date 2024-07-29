@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using ToDoListApplication.Data;
-using ToDoListApplication.Models;
 
 namespace ToDoListApplication.Controllers
 {
@@ -58,7 +57,7 @@ namespace ToDoListApplication.Controllers
         // POST: TodoItems/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,IsCompleted")] TodoItem todoItem)
+        public async Task<IActionResult> Create([Bind("Id,Title,IsCompleted")] TodoItemModel todoItem)
         {
             if (ModelState.IsValid)
             {
@@ -95,7 +94,7 @@ namespace ToDoListApplication.Controllers
         // POST: TodoItems/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,IsCompleted")] TodoItem todoItem)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,IsCompleted")] TodoItemModel todoItem)
         {
             if (id != todoItem.Id)
             {

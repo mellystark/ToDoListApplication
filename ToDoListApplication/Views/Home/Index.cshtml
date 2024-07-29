@@ -48,6 +48,15 @@
             <h1 class="display-4">Welcome to Your To-Do List Application</h1>
             <p class="lead">Manage your tasks efficiently and stay organized. Click below to view and manage your to-dos.</p>
             <a href="@Url.Action("Index", "TodoItems")" class="btn btn-custom">Go to Todo List</a>
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a href="@Url.Action("Profile", "Account")" class="btn btn-custom">Go to Profile</a>
+            }
+            else
+            {
+                <a href="@Url.Action("Login", "Account")" class="btn btn-custom">Login</a>
+            }
         </div>
     </div>
 

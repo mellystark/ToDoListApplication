@@ -1,17 +1,17 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using ToDoListApplication.Data;
+using ToDoListApplication.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Logging yapýlandýrmasýný ekle
-builder.Logging.ClearProviders(); // Varsayýlan logging saðlayýcýlarýný temizle
-builder.Logging.AddConsole(); // Konsol loglama saðlayýcýsýný ekle
-builder.Logging.AddDebug(); // Debug loglama saðlayýcýsýný ekle
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+builder.Logging.AddDebug();
 
 // Baðlantý dizesini yapýlandýrýn
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -45,7 +45,7 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddAuthorization();
 
-builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 {
     options.Password.RequiredLength = 6;
     options.Password.RequireNonAlphanumeric = false;
