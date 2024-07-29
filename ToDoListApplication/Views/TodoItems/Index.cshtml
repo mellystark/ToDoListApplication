@@ -5,14 +5,14 @@
 }
 
 <div class="container mt-5">
-    <h1 class="mb-4 text-center">@ViewData["Title"]</h1>
+    <h1 class="mb-4 text-center text-white">@ViewData["Title"]</h1>
 
     <div class="d-flex justify-content-end mb-3">
-        <a class="btn btn-outline-primary" asp-action="Create">Create New</a>
+        <a class="btn custom-pink-btn" asp-action="Create">Create New</a>
     </div>
 
     <div class="table-responsive">
-        <table class="table table-bordered table-hover">
+        <table class="table table-bordered table-hover shadow-lg rounded">
             <thead class="table-dark">
                 <tr>
                     <th>Title</th>
@@ -36,9 +36,9 @@
                             }
                         </td>
                         <td class="text-center">
-                            <a class="btn btn-info btn-sm" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                            <a class="btn btn-secondary btn-sm" asp-action="Details" asp-route-id="@item.Id">Details</a>
-                            <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            <a class="btn btn-info btn-sm rounded" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                            <a class="btn btn-secondary btn-sm rounded" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                            <a class="btn btn-danger btn-sm rounded" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                         </td>
                     </tr>
                 }
@@ -46,3 +46,51 @@
         </table>
     </div>
 </div>
+
+<style>
+    body {
+        background-color: #f8d3e3; /* Arka plan rengi pembe */
+        font-family: 'Arial', sans-serif; /* Yazı tipi */
+    }
+
+    h1 {
+        font-size: 2.5rem; /* Başlık boyutu */
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Başlığa gölge efekti */
+    }
+
+    .custom-pink-btn {
+        background-color: #ff4f81; /* Arka plan rengi pembe */
+        color: white; /* Metin rengi beyaz */
+        border-radius: 10px; /* Butonun köşelerini yuvarla */
+        border: none; /* Kenarlık yok */
+    }
+
+        .custom-pink-btn:hover {
+            background-color: #ffd3ee; /* Hover durumunda daha açık pembe */
+        }
+
+    .table {
+        font-size: 1.2rem; /* Yazı boyutunu büyüt */
+        border-radius: 15px; /* Tablonun köşelerini yuvarla */
+        overflow: hidden; /* Kenar yuvarlama için taşma kontrolü */
+        background-color: #ffffff; /* Tablo arka planı beyaz */
+        border: 1px solid #ff4f81; /* Tablo kenarı pembe */
+    }
+
+        .table th, .table td {
+            padding: 20px; /* Hücre içi boşluk */
+        }
+
+    .table-dark {
+        background-color: #ff4f81; /* Başlık rengi pembe */
+        color: white; /* Metin rengi beyaz */
+    }
+
+    .badge {
+        border-radius: 30px; /* Badge'ler için yuvarlak köşe */
+    }
+
+    .btn {
+        border-radius: 30px; /* Butonlar için yuvarlak köşe */
+    }
+</style>

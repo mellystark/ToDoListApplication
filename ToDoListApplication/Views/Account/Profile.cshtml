@@ -11,6 +11,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <title>@ViewData["Title"] - ToDoListApplication</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #f6d2e8, #fbbee3); /* Arka plan için renk geçişi */
+            font-family: 'Arial', sans-serif; /* Yazı tipi */
+        }
+
+        .card {
+            border-radius: 15px; /* Kart köşelerini yuvarla */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Gölge efekti */
+        }
+
+        .card-header {
+            background-color: #ff4f81; /* Kart başlığı rengi */
+            color: white; /* Başlık metin rengi */
+            border-top-left-radius: 15px; /* Köşe yuvarlama */
+            border-top-right-radius: 15px; /* Köşe yuvarlama */
+        }
+
+        .card-body {
+            background-color: rgba(255, 255, 255, 0.9); /* Beyaz yarı saydam arka plan */
+            border-radius: 0 0 15px 15px; /* Kart gövdesinin köşelerini yuvarla */
+        }
+
+        h2 {
+            font-size: 2rem; /* Başlık boyutu */
+        }
+
+        h4 {
+            color: #ff4f81; /* H4 başlık rengi */
+        }
+
+        .btn-primary {
+            background-color: #ff4f81; /* Buton arka plan rengi */
+            border: none; /* Kenarlık yok */
+            border-radius: 25px; /* Buton köşelerini yuvarla */
+            transition: background-color 0.3s; /* Geçiş efekti */
+        }
+
+            .btn-primary:hover {
+                background-color: #f6d2e8; /* Hover durumunda daha koyu pembe */
+            }
+    </style>
 </head>
 <body>
     <div class="container">

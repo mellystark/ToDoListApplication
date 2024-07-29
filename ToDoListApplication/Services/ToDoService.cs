@@ -1,4 +1,4 @@
-﻿namespace ToDoListApplication.Services
+﻿namespace ToDoListApplication.Data.Services
 {
     public class ToDoService
     {

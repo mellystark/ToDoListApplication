@@ -1,27 +1,34 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ToDoListApplication.Data;
+using ToDoListApplication.Models;
 
 namespace ToDoListApplication.Controllers
 {
-    // [Authorize]
+    [Authorize]
     public class TodoItemsController : Controller
     {
         private readonly ApplicationDbContext _context;
         private readonly ILogger<TodoItemsController> _logger;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public TodoItemsController(ApplicationDbContext context, ILogger<TodoItemsController> logger)
+        public TodoItemsController(ApplicationDbContext context, ILogger<TodoItemsController> logger, UserManager<ApplicationUser> userManager)
         {
             _context = context;
             _logger = logger;
+            _userManager = userManager;
         }
 
         // GET: TodoItems
         public async Task<IActionResult> Index()
         {
             _logger.LogInformation("TodoItems Index sayfası açıldı.");
-            var todoItems = await _context.TodoItems.ToListAsync();
+            var userId = _userManager.GetUserId(User);
+            var todoItems = await _context.TodoItems
+                                          .Where(t => t.UserId == userId)
+                                          .ToListAsync();
             return View(todoItems);
         }
 
@@ -34,8 +41,9 @@ namespace ToDoListApplication.Controllers
                 return NotFound();
             }
 
+            var userId = _userManager.GetUserId(User);
             var todoItem = await _context.TodoItems
-                .FirstOrDefaultAsync(m => m.Id == id);
+                                         .FirstOrDefaultAsync(m => m.Id == id && m.UserId == userId);
 
             if (todoItem == null)
             {
@@ -57,8 +65,10 @@ namespace ToDoListApplication.Controllers
         // POST: TodoItems/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,IsCompleted")] TodoItemModel todoItem)
+        public async Task<IActionResult> Create([Bind("Title,IsCompleted")] TodoItemModel todoItem)
         {
+            todoItem.UserId = _userManager.GetUserId(User); // Kullanıcının kimliğini al ve UserId'yi ayarla
+
             if (ModelState.IsValid)
             {
                 _context.Add(todoItem);
@@ -80,7 +90,10 @@ namespace ToDoListApplication.Controllers
                 return NotFound();
             }
 
-            var todoItem = await _context.TodoItems.FindAsync(id);
+            var userId = _userManager.GetUserId(User);
+            var todoItem = await _context.TodoItems
+                                         .FirstOrDefaultAsync(m => m.Id == id && m.UserId == userId);
+
             if (todoItem == null)
             {
                 _logger.LogWarning("Id {Id} ile TodoItem bulunamadı.", id);
@@ -102,13 +115,26 @@ namespace ToDoListApplication.Controllers
                 return NotFound();
             }
 
+            var userId = _userManager.GetUserId(User);
+            var originalTodoItem = await _context.TodoItems
+                                                 .FirstOrDefaultAsync(t => t.Id == id && t.UserId == userId);
+
+            if (originalTodoItem == null)
+            {
+                _logger.LogWarning("Id {Id} ile TodoItem bulunamadı.", id);
+                return NotFound();
+            }
+
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(todoItem);
+                    originalTodoItem.Title = todoItem.Title;
+                    originalTodoItem.IsCompleted = todoItem.IsCompleted;
+
+                    _context.Update(originalTodoItem);
                     await _context.SaveChangesAsync();
-                    _logger.LogInformation("TodoItem güncellendi: {Title}", todoItem.Title);
+                    _logger.LogInformation("TodoItem güncellendi: {Title}", originalTodoItem.Title);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -138,8 +164,10 @@ namespace ToDoListApplication.Controllers
                 return NotFound();
             }
 
+            var userId = _userManager.GetUserId(User);
             var todoItem = await _context.TodoItems
-                .FirstOrDefaultAsync(m => m.Id == id);
+                                         .FirstOrDefaultAsync(m => m.Id == id && m.UserId == userId);
+
             if (todoItem == null)
             {
                 _logger.LogWarning("Id {Id} ile TodoItem bulunamadı.", id);
@@ -155,7 +183,10 @@ namespace ToDoListApplication.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var todoItem = await _context.TodoItems.FindAsync(id);
+            var userId = _userManager.GetUserId(User);
+            var todoItem = await _context.TodoItems
+                                         .FirstOrDefaultAsync(m => m.Id == id && m.UserId == userId);
+
             if (todoItem != null)
             {
                 _context.TodoItems.Remove(todoItem);
@@ -168,7 +199,8 @@ namespace ToDoListApplication.Controllers
 
         private bool TodoItemExists(int id)
         {
-            return _context.TodoItems.Any(e => e.Id == id);
+            var userId = _userManager.GetUserId(User);
+            return _context.TodoItems.Any(e => e.Id == id && e.UserId == userId);
         }
     }
 }

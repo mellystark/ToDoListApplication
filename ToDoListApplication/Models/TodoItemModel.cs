@@ -1,12 +1,20 @@
-﻿using ToDoListApplication.Models;
+﻿using System.ComponentModel.DataAnnotations;
 
-public class TodoItemModel
+namespace ToDoListApplication.Models
 {
-    public int Id { get; set; }
-    public string Title { get; set; }
-    public bool IsCompleted { get; set; }
+    public class TodoItemModel
+    {
+        
+        public int Id { get; set; }
 
-    // Kullanıcı referansı
-    public string UserId { get; set; }
-    public ApplicationUser User { get; set; }
+        
+        public string Title { get; set; }
+
+        public bool IsCompleted { get; set; }
+
+        // Kullanıcı referansı
+        public string? UserId { get; set; }
+
+        public ApplicationUser? User { get; set; }
+    }
 }

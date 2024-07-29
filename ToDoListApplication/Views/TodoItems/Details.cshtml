@@ -5,20 +5,20 @@
 }
 
 <div class="container mt-5">
-    <h1 class="mb-4 text-center">@ViewData["Title"]</h1>
+    <h1 class="mb-4 text-center text-white">@ViewData["Title"]</h1>
 
-    <div class="card">
+    <div class="card shadow-lg rounded">
         <div class="card-body">
-            <h4 class="card-title">TodoItem Details</h4>
+            <h4 class="card-title text-primary">TodoItem Details</h4>
             <hr />
             <dl class="row">
-                <dt class="col-sm-3">
+                <dt class="col-sm-3 fw-bold">
                     @Html.DisplayNameFor(model => model.Title)
                 </dt>
                 <dd class="col-sm-9">
                     @Html.DisplayFor(model => model.Title)
                 </dd>
-                <dt class="col-sm-3">
+                <dt class="col-sm-3 fw-bold">
                     @Html.DisplayNameFor(model => model.IsCompleted)
                 </dt>
                 <dd class="col-sm-9">
@@ -36,7 +36,38 @@
     </div>
 
     <div class="mt-4 text-center">
-        <a class="btn btn-primary me-2" asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
+        <a class="btn btn-success me-2" asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
         <a class="btn btn-secondary" asp-action="Index">Back to List</a>
     </div>
 </div>
+
+<style>
+    body {
+        background-color: #f8d3e3; /* Arka plan rengi pembe */
+        font-family: 'Arial', sans-serif; /* Yazı tipi */
+    }
+
+    h1 {
+        font-size: 2.5rem; /* Başlık boyutu */
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Başlığa gölge efekti */
+    }
+
+    .card {
+        background-color: #ffffff; /* Kartın arka plan rengi beyaz */
+        border-radius: 15px; /* Kart köşe yuvarlama */
+        border: 1px solid #ff4f81; /* Kart kenar rengi pembe */
+    }
+
+    .card-title {
+        font-weight: bold; /* Kart başlığı kalın yazı */
+    }
+
+    .btn {
+        border-radius: 10px; /* Buton köşe yuvarlama */
+        padding: 10px 20px; /* Buton içi boşluk */
+    }
+
+    .badge {
+        border-radius: 12px; /* Badge'ler için yuvarlak köşe */
+    }
+</style>

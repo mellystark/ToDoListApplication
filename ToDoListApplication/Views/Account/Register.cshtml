@@ -9,6 +9,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <title>@ViewData["Title"] - ToDoListApplication</title>
+    <style>
+        body {
+            background-color: #f8e0f2; /* Açık pembe arka plan */
+        }
+
+        .card {
+            border-radius: 15px; /* Kart köşelerini yuvarla */
+            border: none; /* Kenarlık yok */
+        }
+
+        .card-header {
+            background-color: #f3a6d2; /* Açık pembe üst kısım */
+            color: white; /* Yazı rengi beyaz */
+            border-top-left-radius: 15px; /* Üst köşeleri yuvarla */
+            border-top-right-radius: 15px; /* Üst köşeleri yuvarla */
+        }
+
+        .btn-primary {
+            background-color: #ff4f81; /* Buton rengi pembe */
+            border: none; /* Kenarlık yok */
+            border-radius: 25px; /* Buton köşelerini yuvarla */
+        }
+
+            .btn-primary:hover {
+                background-color: #ff1f60; /* Hover durumunda koyu pembe */
+            }
+
+        .form-control {
+            border-radius: 10px; /* Input köşelerini yuvarla */
+        }
+
+        .alert-danger {
+            background-color: #f8d7da; /* Hata mesajı arka plan rengi */
+            color: #721c24; /* Hata mesajı yazı rengi */
+            border-radius: 10px; /* Hata mesajı köşelerini yuvarla */
+        }
+    </style>
 </head>
 <body>
     <div class="container">

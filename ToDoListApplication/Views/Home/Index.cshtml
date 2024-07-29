@@ -10,35 +10,48 @@
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/css/bootstrap.min.css">
     <style>
+        body {
+            background: linear-gradient(to right, #f6d2e8, #fbbee3); /* Arka plan için renk geçişi */
+            font-family: 'Arial', sans-serif; /* Yazı tipi */
+        }
+
         .hero-section {
-            background: linear-gradient(to right, #4a90e2, #50e3c2);
-            color: #fff;
-            padding: 50px 0;
+            background: rgba(255, 255, 255, 0.9); /* Beyaz yarı saydam arka plan */
+            border-radius: 15px; /* Köşeleri yuvarla */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Gölge efekti */
+            color: black;
+            padding: 60px 30px; /* Daha fazla padding */
             text-align: center;
+            max-width: 800px; /* Maksimum genişlik */
+            margin: 50px auto; /* Ortala ve üstten boşluk bırak */
         }
 
             .hero-section h1 {
-                font-size: 3rem;
+                font-size: 2.5rem; /* Başlık boyutu */
                 margin-bottom: 20px;
+                font-weight: bold; /* Kalın başlık */
             }
 
             .hero-section p {
-                font-size: 1.2rem;
+                font-size: 1.2rem; /* Paragraf boyutu */
                 margin-bottom: 30px;
+                color: #333; /* Koyu gri metin rengi */
             }
 
         .btn-custom {
-            background-color: #50e3c2;
-            color: #fff;
+            background-color: #ff4f81; /* Buton arka plan rengi */
+            color: #fff; /* Buton metin rengi */
             border: none;
-            padding: 10px 20px;
-            font-size: 1.1rem;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+            padding: 12px 24px; /* Buton padding */
+            font-size: 1.1rem; /* Buton metin boyutu */
+            border-radius: 25px; /* Butonun köşelerini yuvarla */
+            transition: background-color 0.3s, transform 0.3s; /* Geçiş efektleri */
+            margin: 5px; /* Butonlar arası boşluk */
         }
 
             .btn-custom:hover {
-                background-color: #4a90e2;
+                background-color: #f6d2e8; /* Hover durumunda daha koyu pembe */
+                transform: scale(1.05); /* Hover durumunda büyütme efekti */
             }
     </style>
 </head>

@@ -5,21 +5,21 @@
 }
 
 <div class="container mt-5">
-    <h1 class="mb-4 text-center">@ViewData["Title"]</h1>
+    <h1 class="mb-4 text-center text-white">@ViewData["Title"]</h1>
 
-    <div class="card">
+    <div class="card shadow-lg rounded">
         <div class="card-body">
-            <h3 class="text-center mb-4">Are you sure you want to delete this item?</h3>
-            <h4 class="mb-3">TodoItem Details</h4>
+            <h3 class="text-center text-danger mb-4">Are you sure you want to delete this item?</h3>
+            <h4 class="mb-3 text-primary">TodoItem Details</h4>
             <hr />
             <dl class="row mb-4">
-                <dt class="col-sm-3">
+                <dt class="col-sm-3 fw-bold">
                     @Html.DisplayNameFor(model => model.Title)
                 </dt>
                 <dd class="col-sm-9">
                     @Html.DisplayFor(model => model.Title)
                 </dd>
-                <dt class="col-sm-3">
+                <dt class="col-sm-3 fw-bold">
                     @Html.DisplayNameFor(model => model.IsCompleted)
                 </dt>
                 <dd class="col-sm-9">
@@ -36,10 +36,41 @@
             <div class="d-flex justify-content-between">
                 <form asp-action="Delete" method="post">
                     <input type="hidden" asp-for="Id" />
-                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <button type="submit" class="btn btn-danger rounded-pill">Delete</button>
                 </form>
-                <a class="btn btn-secondary" asp-action="Index">Back to List</a>
+                <a class="btn btn-secondary rounded-pill" asp-action="Index">Back to List</a>
             </div>
         </div>
     </div>
 </div>
+
+<style>
+    body {
+        background-color: #f8d3e3; /* Arka plan rengi pembe */
+        font-family: 'Arial', sans-serif; /* Yazı tipi */
+    }
+
+    h1 {
+        font-size: 2.5rem; /* Başlık boyutu */
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Başlığa gölge efekti */
+    }
+
+    .card {
+        background-color: #ffffff; /* Kartın arka plan rengi beyaz */
+        border-radius: 15px; /* Kart köşe yuvarlama */
+        border: 1px solid #ff4f81; /* Kart kenar rengi pembe */
+    }
+
+    .card-title {
+        font-weight: bold; /* Kart başlığı kalın yazı */
+    }
+
+    .btn {
+        border-radius: 10px; /* Buton köşe yuvarlama */
+        padding: 10px 20px; /* Buton içi boşluk */
+    }
+
+    .badge {
+        border-radius: 12px; /* Badge'ler için yuvarlak köşe */
+    }
+</style>

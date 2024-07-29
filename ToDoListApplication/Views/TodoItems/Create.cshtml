@@ -5,11 +5,11 @@
 }
 
 <div class="container mt-5">
-    <h1 class="mb-4 text-center">@ViewData["Title"]</h1>
+    <h1 class="mb-4 text-center text-white">@ViewData["Title"]</h1>
 
-    <div class="card">
+    <div class="card shadow-lg rounded">
         <div class="card-body">
-            <h4 class="mb-3">Create New TodoItem</h4>
+            <h4 class="mb-3 text-primary">Create New TodoItem</h4>
             <hr />
             <form asp-action="Create">
                 <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
@@ -29,15 +29,18 @@
                     </label>
                 </div>
 
+                <!-- Gizli UserId alanı -->
+                <input type="hidden" asp-for="UserId" />
+
                 <div class="d-flex justify-content-end">
-                    <button type="submit" class="btn btn-primary">Create</button>
+                    <button type="submit" class="btn btn-success rounded-pill">Create</button>
                 </div>
             </form>
         </div>
     </div>
 
     <div class="mt-4 text-center">
-        <a class="btn btn-secondary" asp-action="Index">Back to List</a>
+        <a class="btn btn-secondary rounded-pill" asp-action="Index">Back to List</a>
     </div>
 </div>
 
@@ -46,3 +49,38 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+
+<style>
+    body {
+        background-color: #f8d3e3; /* Arka plan rengi pembe */
+        font-family: 'Arial', sans-serif; /* Yazı tipi */
+    }
+
+    h1 {
+        font-size: 2.5rem; /* Başlık boyutu */
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Başlığa gölge efekti */
+    }
+
+    .card {
+        background-color: #ffffff; /* Kartın arka plan rengi beyaz */
+        border-radius: 15px; /* Kart köşe yuvarlama */
+        border: 1px solid #ff4f81; /* Kart kenar rengi pembe */
+    }
+
+    .card-title {
+        font-weight: bold; /* Kart başlığı kalın yazı */
+    }
+
+    .btn {
+        border-radius: 10px; /* Buton köşe yuvarlama */
+        padding: 10px 20px; /* Buton içi boşluk */
+    }
+
+    .form-check-input {
+        border-radius: 5px; /* Checkbox için köşe yuvarlama */
+    }
+
+    .badge {
+        border-radius: 12px; /* Badge'ler için yuvarlak köşe */
+    }
+</style>

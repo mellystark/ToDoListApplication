@@ -5,34 +5,38 @@
 }
 
 <div class="container mt-5">
-    <h1 class="mb-4 text-center">@ViewData["Title"]</h1>
+    <h1 class="mb-4 text-center text-white">@ViewData["Title"]</h1>
 
     <div class="row justify-content-center">
         <div class="col-md-6 col-lg-4">
-            <form asp-action="Edit">
-                <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+            <div class="card shadow-sm rounded">
+                <div class="card-body">
+                    <form asp-action="Edit">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
 
-                <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="Id" />
 
-                <div class="mb-3">
-                    <label asp-for="Title" class="form-label"></label>
-                    <input asp-for="Title" class="form-control" />
-                    <div class="form-text text-danger">
-                        <span asp-validation-for="Title"></span>
-                    </div>
+                        <div class="mb-3">
+                            <label asp-for="Title" class="form-label text-primary"></label>
+                            <input asp-for="Title" class="form-control" placeholder="Enter task title" />
+                            <div class="form-text text-danger">
+                                <span asp-validation-for="Title"></span>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 form-check">
+                            <input asp-for="IsCompleted" class="form-check-input" type="checkbox" id="isCompleted" />
+                            <label class="form-check-label" for="isCompleted">
+                                @Html.DisplayNameFor(model => model.IsCompleted)
+                            </label>
+                        </div>
+
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-success">Save</button>
+                        </div>
+                    </form>
                 </div>
-
-                <div class="mb-3 form-check">
-                    <input asp-for="IsCompleted" class="form-check-input" type="checkbox" id="isCompleted" />
-                    <label class="form-check-label" for="isCompleted">
-                        @Html.DisplayNameFor(model => model.IsCompleted)
-                    </label>
-                </div>
-
-                <div class="d-flex justify-content-end">
-                    <button type="submit" class="btn btn-primary">Save</button>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 
@@ -46,3 +50,41 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+
+<style>
+    body {
+        background-color: #f8d3e3; /* Arka plan rengi pembe */
+        font-family: 'Arial', sans-serif; /* Yazı tipi */
+    }
+
+    h1 {
+        font-size: 2.5rem; /* Başlık boyutu */
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Başlığa gölge efekti */
+    }
+
+    .card {
+        background-color: #ffffff; /* Kartın arka plan rengi beyaz */
+        border-radius: 15px; /* Kart köşe yuvarlama */
+        border: 1px solid #ff4f81; /* Kart kenar rengi pembe */
+    }
+
+    .btn {
+        border-radius: 10px; /* Buton köşe yuvarlama */
+        padding: 10px 20px; /* Buton içi boşluk */
+    }
+
+    .form-label {
+        font-weight: bold; /* Etiket kalın yazı */
+    }
+
+    .form-control {
+        border-radius: 8px; /* Girdi alanı köşe yuvarlama */
+        border: 1px solid #ff4f81; /* Girdi alanı kenar rengi pembe */
+        transition: border-color 0.3s; /* Geçiş efekti */
+    }
+
+        .form-control:focus {
+            border-color: #ff4f81; /* Girdi alanı odak rengi pembe */
+            box-shadow: 0 0 5px rgba(255, 79, 129, 0.5); /* Odak sırasında gölge efekti */
+        }
+</style>
